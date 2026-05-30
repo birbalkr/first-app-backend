@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import cloudinary from "../lib/cloudinary.js";
 import protectRoute from "../middleware/auth.middleware.js";
+import Book from "../models/Book.js";
 
 // create a book route
 router.post("/", protectRoute, async (req, res) => {
