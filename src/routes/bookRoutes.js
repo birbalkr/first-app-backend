@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 import cloudinary from "../lib/cloudinary.js";
-import protectRoute from "../middleware/auth.middleware.js";
 import Book from "../models/Book.js";
+import protectRoute from "../middleware/auth.middleware.js";
 
 // create a book route
 router.post("/", protectRoute, async (req, res) => {
@@ -21,10 +21,11 @@ router.post("/", protectRoute, async (req, res) => {
         const newBook = new Book({
             title,
             caption,
-            image: imageUrl,
             rating,
+            image: imageUrl,
             user: req.user._id,
         });
+        
         await newBook.save();
         res.status(201).json({ message: "Book created successfully", book: newBook });
 
